@@ -1,0 +1,12 @@
+$cdd-ff: 'cdd';
+
+$main-color: #573134;
+
+:root {
+  --header-size: 7.5rem;
+
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+
+  scrollbar-color: $main-color #fff;
+}

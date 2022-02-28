@@ -1,0 +1,326 @@
+@import 'includes/reset';
+@import 'includes/variables';
+@import 'includes/fonts';
+@import 'includes/mixins';
+
+// scrollbar styles
+::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $main-color;
+  border-radius: 20rem;
+
+  &:hover,
+  &:active {
+    background: lighten($main-color, 10%);
+  }
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: darken($main-color, 5%);
+}
+// end scrollbar styles
+
+.container {
+  display: grid;
+  grid-template-rows: var(--header-size) auto 7.5rem;
+  grid-template-areas: 'header' 'main' 'footer';
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-area: header;
+  padding: 0 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-size);
+  background-color: #fff;
+  z-index: 50;
+  transition: box-shadow 300ms ease;
+
+  @include md {
+    display: block;
+    padding: 0;
+  }
+
+  @include lg {
+    padding: 0 4rem;
+  }
+
+  &.scrolled {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  }
+
+  & > a {
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    @include md {
+      display: none;
+    }
+  }
+
+  input[type='checkbox'] {
+    &:checked ~ nav {
+      pointer-events: auto;
+      background-color: #fff;
+      height: 19.5rem;
+
+      @include md {
+        height: auto;
+      }
+    }
+  }
+
+  nav {
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: var(--header-size);
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    transition: height 300ms ease;
+
+    @include md {
+      opacity: 1;
+      pointer-events: auto;
+      display: block;
+      position: static;
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  ul {
+    display: flex;
+    height: inherit;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    @include md {
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      padding: 1rem;
+      text-transform: uppercase;
+      font-size: 1.15rem;
+      transition: color 200ms ease, background-color 200ms ease;
+
+      &:hover,
+      &:active,
+      &.active {
+        color: #fff;
+        background-color: $main-color;
+      }
+
+      @include md {
+        width: auto;
+        padding: 2rem;
+      }
+
+      @include xl {
+        padding: 3rem 4rem;
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+@import 'includes/burger';
+
+.accent {
+  color: $main-color;
+}
+
+main {
+  grid-area: main;
+
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 4rem 0;
+
+    @include md {
+      font-size: 5rem;
+    }
+
+    @include xl {
+      margin: 12rem 0 8rem;
+    }
+  }
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+@import 'includes/carousel';
+
+#services {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+@import 'includes/card';
+
+#details {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 0 1rem;
+
+  @include md {
+    padding: 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+
+    @include rwd(1170) {
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+  }
+
+  strong {
+    display: block;
+    font-weight: 600;
+    color: $main-color;
+    margin-bottom: 2rem;
+  }
+
+  ul {
+    list-style-image: url('../img/arrow.png');
+    margin-left: 1.25rem;
+  }
+
+  li:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  article {
+    max-width: 700px;
+
+    @include rwd(1170) {
+      max-width: 365px;
+    }
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 2rem;
+    color: #fff;
+    background-color: $main-color;
+    padding: 0.5rem;
+    transition: background-color 200ms ease;
+
+    &:hover,
+    &:active {
+      background-color: lighten($main-color, 10%);
+    }
+  }
+}
+
+footer {
+  margin-top: 2rem;
+  border-top: 2px solid #000;
+  grid-area: footer;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 1rem;
+
+  div {
+    &:first-child {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.25rem;
+    }
+  }
+
+  .logo {
+    width: 3rem;
+  }
+}
+
+.social-medias {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.facebook {
+  width: 32px;
+  height: 32px;
+  background-image: url('../img/reseaux.png');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+
+  &:hover {
+    background-position: 0 -32px;
+  }
+}
+
+.twitter {
+  width: 32px;
+  height: 32px;
+  background-image: url('../img/reseaux.png');
+  background-position: -32px 0;
+  background-repeat: no-repeat;
+
+  &:hover {
+    background-position: -32px -32px;
+  }
+}
+
+.google-plus {
+  width: 32px;
+  height: 32px;
+  background-image: url('../img/reseaux.png');
+  background-position: -64px 0;
+  background-repeat: no-repeat;
+
+  &:hover {
+    background-position: -64px -32px;
+  }
+}

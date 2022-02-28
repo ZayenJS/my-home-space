@@ -1,0 +1,161 @@
+@keyframes forwardIn {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes forwardOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes backwardIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes backwardOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+#carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1920px; // limits the carousel to (1920x1080)px (full HD)
+  aspect-ratio: 16/9;
+  margin: 0 auto 4rem;
+  overflow: hidden;
+  background-color: darken($main-color, 10%);
+  z-index: 1;
+
+  @include xl {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    .left {
+      transform: translate(0, -50%);
+    }
+
+    .right {
+      transform: translate(0, -50%);
+    }
+
+    .carousel__indicator {
+      transform: translate(0);
+    }
+  }
+}
+
+.carousel__image {
+  @extend .image;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transform: translate(100%);
+
+  &.forwardIn {
+    animation: forwardIn 500ms ease forwards;
+  }
+
+  &.forwardOut {
+    animation: forwardOut 500ms ease forwards;
+  }
+
+  &.backwardIn {
+    animation: backwardIn 500ms ease forwards;
+  }
+
+  &.backwardOut {
+    animation: backwardOut 500ms ease forwards;
+  }
+
+  &.active {
+    transform: translate(0);
+  }
+}
+
+#carousel__nav {
+  .left,
+  .right {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: color 300ms ease, background-color 300ms ease, transform 300ms ease;
+
+    &:hover {
+      color: #fff;
+      background-color: $main-color;
+    }
+  }
+
+  .left {
+    left: 1rem;
+    transform: translate(-150%, -50%);
+  }
+
+  .right {
+    right: 1rem;
+    transform: translate(150%, -50%);
+  }
+}
+
+#carousel__indicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: absolute;
+  bottom: 1rem;
+  z-index: 500;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include md {
+    bottom: 2rem;
+    gap: 1rem;
+  }
+}
+
+.carousel__indicator {
+  cursor: pointer;
+  width: 0.75rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background-color: rgba($main-color, 0.75);
+  transform: translateY(5rem);
+  transition: transform 300ms ease;
+
+  &.active {
+    border-color: #fff;
+  }
+
+  @include md {
+    width: 1rem;
+  }
+}

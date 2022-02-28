@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'cdd';
+  src: url('../fonts/cdd/cdd.eot');
+  src: url('../fonts/cdd/cdd.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/cdd/cdd.woff') format('woff'), url('../fonts/cdd/cdd.ttf') format('truetype'),
+    url('../fonts/cdd/cdd.svg#cdd') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: 'cdd' !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^='cdd-']:before,
+[class*=' cdd-']:before {
+  font-family: 'cdd' !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cdd-chevron-right:before {
+  content: '\e100';
+}
+.cdd-chevron-left:before {
+  content: '\e101';
+}

@@ -1,0 +1,63 @@
+.card {
+  position: relative;
+  opacity: 0;
+  max-width: 700px;
+  pointer-events: none;
+  background-image: url('../img/bg.png');
+  padding-bottom: 4rem;
+  transition: transform 600ms ease-out, opacity 600ms ease-out;
+
+  @include xl {
+    max-width: 365px;
+  }
+
+  &:nth-child(1) {
+    transform: translateX(-100%);
+  }
+
+  &:nth-child(2) {
+    transform: scale(0.9);
+  }
+
+  &:nth-child(3) {
+    transform: translateX(100%);
+  }
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1) translateX(0);
+  }
+
+  h2 {
+    background-color: var(--main-color);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  p {
+    color: #fff;
+    margin: 1rem 0;
+    font-weight: 500;
+    padding: 0 0.5rem;
+  }
+}
+
+.plus-icon {
+  cursor: pointer;
+  width: 4rem;
+  aspect-ratio: 1;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-image: url('../img/plus_btn.png');
+  transition: 150ms ease background-image;
+
+  &:hover {
+    background-image: url('../img/plus_btn_h.png');
+  }
+}
